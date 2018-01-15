@@ -28,6 +28,9 @@ switch($page){
   case 'price_setting':
     $body->set_template("templates/admin/price.html");
     break;
+  case 'branch':
+    $body->set_template("templates/admin/branch.html");
+    break;
   default:
     $body->set_template("templates/admin/cpanel.html");
 }

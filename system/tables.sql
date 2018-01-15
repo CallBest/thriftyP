@@ -12,6 +12,7 @@ create table users (
 	firstname varchar(50) not null default '',
 	lastname varchar(50) not null default '',
 	usertype int(11) not null default 0,
+	teamid int(11) not null default 0,
 	datecreated datetime not null default '0000-00-00 00:00:00',
 	lastlogin datetime not null default '0000-00-00 00:00:00',
 	pwexpires date not null default '0000-00-00',
@@ -39,6 +40,12 @@ insert into users (userid,username,password,firstname,lastname,usertype,datecrea
 	(5,'admin','1aZyZ8h16O2TU','Global','Admin',9,now())	
 	;
 
+create table teams (
+	teamid int(11) not null auto_increment,
+	teamname varchar(50) not null default '',
+	primary key (teamid)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
+
 create table userlogs (
 	logid int(11) not null auto_increment,
 	userid int(11) not null default 0,
@@ -64,33 +71,10 @@ create table dispositions (
 
 insert into dispositions (dispoid,disposition,dispocode,livecall,sale,callback,fresh,selectable,usertype)
 	values
-	(1,'New','NEW',0,0,0,1,0,0),
-	(2,'Referal','REF',0,0,0,1,0,0),
-	(3,'Call Back','CBA',1,0,1,0,1,1),
-	(4,'Card Holder','CH',1,0,0,0,1,1),
-	(5,'Not Interested','NI',1,0,0,0,1,1),
-	(6,'Not Qualified','NQ',1,0,0,0,1,1),
-	(7,'Retired','RET',1,0,0,0,1,1),
-	(8,'Unemployed','UEM',1,0,0,0,1,1),
-	(9,'Verification Not Allowed','VNA',1,0,0,0,1,1),
-	(10,'Others - Contacted','OTH-CON',1,0,0,0,1,1),
-	(11,'Keeps On Ringing','KOR',0,0,0,0,1,1),
-	(12,'Phone Busy','BUS',0,0,0,0,1,1),
-	(13,'Fax Tone','FAX',0,0,0,0,1,1),
-	(14,'Not Available','NAV',0,0,0,0,1,1),
-	(15,'Not In Service','NIS',0,0,0,0,1,1),
-	(16,'Number Incorrect','NUMINC',0,0,0,0,1,1),
-	(17,'Others - Uncontacted','OTH-UNCON',0,0,0,0,1,1),
-	(18,'Verified','VER',1,1,0,0,1,1),
-	(19,'Call Back','CBA',1,0,1,0,1,2),
-	(20,'For Document Processing','FDP',0,1,0,0,1,2),
-	(21,'Email Sent','EMAIL',0,1,0,0,1,3),
-	(22,'Fax Sent','FAXED',0,1,0,0,1,3),
-	(23,'Viber Sent','VIBER',0,1,0,0,1,3),
-	(24,'FB Messenger Sent','FBS',0,1,0,0,1,3),
-	(25,'Turn-In','TI',0,1,0,0,1,3),
-	(26,'Incomplete Documents','DOCINC',0,0,0,0,1,3),
-	(27,'Verified','Verified',1,1,0,0,1,3)
+	(1,'New Customer','New Customer',0,0,0,1,0,0),
+	(2,'Delivery Placed','Delivery Placed',0,0,0,1,0,0),
+	(3,'Order Placed','Order Placed',0,0,0,1,0,0),
+	(4,'For Delivery','For Delivery',0,0,0,1,0,0)
 	;
 
 create table masterfile (
