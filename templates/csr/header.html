@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Elowen,GCute">
+    <link rel="icon" href="images/icons/star.ico">
+
+    <title>Thrifty Propane</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/csr.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/csr.js"></script>
+    <script src="js/common.js"></script>
+    
+  </head>
+
+  <body onload="init();">
+    <br/>
+    <div class="container">
+      <div clas="row">
+        <nav class="navbar">
+          <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              <a class="navbar-brand" href="#" class="linkto" id="togglemenu"><img src="images/thrifty-propane.gif"></a><br/>
+              1-800-879-3152<br/>
+              <a href="mailto:info@thriftypropane.com">info@thriftypropane.com</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right nav-main">
+                <li><a href="#" onclick="javascript:toggle('priceRef');"><span class="glyphicon glyphicon-usd"></span> Price Reference</a></li>
+                <li><a href="#" onclick="javascript:toggle('priceCalc');"><span class="glyphicon glyphicon-phone"></span> Price Calculator</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div id="priceRef">
+      <div class="text-right">
+        <a href="#" onclick="javascript:toggle('priceRef');"><span class="glyphicon glyphicon-chevron-left"></span> Hide</a>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+            <h3>Price Lookup</h3>
+            <hr/>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <label for="lookupstate">State</label><br>
+          <select id="lookupstate" name="lookupstate" onchange="loadCounty('lookupcounty','lookupstate');">
+            <option value="">--Please select a state--</option>
+            <option value="DE">Delaware</option>
+            <option value="IN">Indiana</option>
+            <option value="KY">Kentucky</option>
+            <option value="MD">Maryland</option>
+            <option value="OH">Ohio</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="VA">Virginia</option>
+            <option value="WV">West Virginia</option>
+          </select>
+        </div>
+        <div class="col-md-5">
+          <label for="lookupcounty">County</label><br>
+          <select id="lookupcounty" name="lookupcounty">
+          </select>
+        </div>
+      </div>
+    </div>
+    <div id="priceCalc">
+      <div>
+        <a href="#" onclick="javascript:toggle('priceCalc');">Hide <span class="glyphicon glyphicon-chevron-right"></span></a>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+            <h3>Calculator</h3>
+            <hr/>
+          </div>
+      </div>
+        
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12" id="output">
+
+            </div>
+          </div>
+          <div class="row" id="tank-entry">
+            <div class="row col-md-3 rowset">
+              <div class="row">
+                <div class="col-md-12">
+                  <button class="btn btn-danger btn-small align-right">Tank 1</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="tanksize[0]">Tank size</label><br>
+                  <input type="text" id="tanksize[0]" name="tanksize[0]" maxlength="4" style="width:100%;">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="remaining[0]">Tank % remaining</label><br>
+                  <input type="text" id="remaining[0]" name="remaining[0]" maxlength="2" style="width:100%;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button class="btn btn-danger" id="addtank"><span class="glyphicon glyphicon-plus-sign"></span> Add tank</button>
+              <button class="btn btn-primary" id="calculate"><span class="glyphicon glyphicon-ok"></span> Get fill gallons</button>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="ppg">Price per gallon (<a href="javascript:toggle('priceRef');">price lookup</a>)</label><br>
+              <input type="text" id="ppg" name="ppg" maxlength="6">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

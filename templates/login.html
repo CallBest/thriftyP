@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Elowen,GCute">
+    <link rel="icon" href="images/icons/star.ico">
+
+    <title>Thrifty Propane</title>
+
+    <!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <p><br/><br/></p>
+        <div class="col-md-3">
+          
+        </div>
+        <div class="col-md-6">
+          <center><img src="images/thrifty-propane.gif"></center>
+          <hr>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="page-header">
+                <h3>Sign in to continue</h3>
+                <h5><span class="errmsg">{@errmsg}</span></h5>
+              </div>
+              <form role="form" method="POST" action="login.php">
+                <div class="form-group">
+                  <label for="loginusername">Username</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" id="loginusername" name="loginusername">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="loginpassword">Password</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
+                    <input type="password" class="form-control" placeholder="Password" id="loginpassword" name="loginpassword">
+                  </div>
+                </div>
+                <hr/>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <p><br/></p>
+              </form>    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+        <hr/>
+        <p class="text-muted">&copy; Copyright 2018 Thrifty Propane. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

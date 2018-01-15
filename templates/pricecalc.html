@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mainform.js"></script>
+    <script src="js/pricecalc.js"></script>
+  </head>
+
+  <body>
+    <div class="container mainform">
+      <div class="panel panel-primary">
+        <div class="panel-heading"><span class="glyphicon glyphicon-usd"></span> Price calculator</div>
+        <div class="panel-body form-horizontal">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="state">State</label><br>
+                  <select id="state" name="state">
+                    <option value="">---Please select a state---</option>
+                    <option value="DE">DELAWARE</option>
+                    <option value="IN">INDIANA</option>
+                    <option value="KY">KENTUCKY</option>
+                    <option value="MD">MARYLAND</option>
+                    <option value="OH">OHIO</option>
+                    <option value="PA">PENNSYLVANIA</option>
+                    <option value="VA">VIRGINIA</option>
+                    <option value="WV">WEST VIRGINIA</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="county">County</label><br>
+                  <select id="county" name="county">
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="ppg">Price per gallon (<a href="http://office.thriftypropane.com/cs/PriceLookup.aspx" target="_blank">price lookup</a>)</label><br>
+                  <input type="text" id="ppg" name="ppg" maxlength="6">
+                </div>
+              </div>
+              <div class="row" id="tank-entry">
+                <div class="row col-md-3 rowset">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button class="btn btn-danger btn-small align-right">Tank 1</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="tanksize[0]">Tank size</label><br>
+                      <input type="text" id="tanksize[0]" name="tanksize[0]" maxlength="4" style="width:100%;">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="remaining[0]">Tank % remaining</label><br>
+                      <input type="text" id="remaining[0]" name="remaining[0]" maxlength="2" style="width:100%;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-12">
+                  <button class="btn btn-danger" id="addtank"><span class="glyphicon glyphicon-plus-sign"></span> Add tank</button>
+                  <button class="btn btn-primary" id="calculate"><span class="glyphicon glyphicon-ok"></span> Calculate</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8" id="output">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

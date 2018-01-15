@@ -1,0 +1,157 @@
+<div class="container mainform">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> Client Information</div>
+    <div class="panel-body form-horizontal">
+      <div class="row">
+        <div class="col-md-4">
+          <label for="firstname">First name</label><br>
+          <input type="text" id="firstname" name="firstname" maxlength="50" value="{@firstname}">
+        </div>
+        <div class="col-md-4">
+          <label for="lastname">Last name</label><br>
+          <input type="text" id="lastname" name="lastname" maxlength="50" value="{@lastname}">
+        </div>
+        <div class="col-md-4">
+          <label for="primaryphone">Primary phone</label><br>
+          <input type="text" id="primaryphone" name="primaryphone" maxlength="50" value="{@primaryphone}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label for="address">Address</label><br>
+          <input type="text" id="address" name="address" maxlength="100" value="{@address}">
+        </div>
+        <div class="col-md-8">
+          <label for="city">City</label><br>
+          <input type="text" id="city" name="city" maxlength="50" value="{@city}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label for="state">State</label><br>
+          <select id="state" name="state">
+            <option value="{@state}">{@state}</option>
+            <option value="">---Please select a state---</option>
+            <option value="DE">DELAWARE</option>
+            <option value="IN">INDIANA</option>
+            <option value="KY">KENTUCKY</option>
+            <option value="MD">MARYLAND</option>
+            <option value="OH">OHIO</option>
+            <option value="PA">PENNSYLVANIA</option>
+            <option value="VA">VIRGINIA</option>
+            <option value="WV">WEST VIRGINIA</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="county">County</label><br>
+          <select id="county" name="county">
+            <option value="{@county}">{@county}</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="zipcode">Zip code</label><br>
+          <input type="text" id="zipcode" name="zipcode" maxlength="5" value="{@zipcode}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label for="tankownership">Tank ownership</label><br>
+          <select id="tankownership" name="tankownership">
+            <option value="{@tankownership}">{@tankownership}</option>
+            <option value="Owned">Owned</option>
+            <option value="Leased">Leased</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="tanksize">Tank size</label><br>
+          <input type="text" id="tanksize" name="tanksize" maxlength="50" value="{@tanksize}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label for="billingaddress">Billing address</label><br>
+          <input type="text" id="billingaddress" name="billingaddress" maxlength="100" value="{@billingaddress}">
+        </div>
+        <div class="col-md-8">
+          <label for="billingcity">City</label><br>
+          <input type="text" id="billingcity" name="billingcity" maxlength="50" value="{@billingcity}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label for="billingstate">State</label><br>
+          <select id="billingstate" name="billingstate">
+            <option value="{@state}">{@state}</option>
+            <option value="DE">DELAWARE</option>
+            <option value="IN">INDIANA</option>
+            <option value="KY">KENTUCKY</option>
+            <option value="MD">MARYLAND</option>
+            <option value="OH">OHIO</option>
+            <option value="PA">PENNSYLVANIA</option>
+            <option value="VA">VIRGINIA</option>
+            <option value="WV">WEST VIRGINIA</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="billingzipcode">Zip code</label><br>
+          <input type="text" id="billingzipcode" name="billingzipcode" maxlength="5" value="{@billingzipcode}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label for="cardtype">Card type</label><br>
+          <select id="cardtype" name="cardtype">
+            <option value="{@cardtype}"></option>
+            <option value="">Visa</option>
+            <option value="">Mastercard</option>
+            <option value="">American Express</option>
+            <option value="">Discover</option>
+            <option value="">Others</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="cardnumber">Card number</label><br>
+          <input type="text" id="cardnumber" name="cardnumber" maxlength="16" value="{@cardnumber}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label for="expirationdate">Expiration date</label><br>
+          <input type="text" id="expirationdate" name="expirationdate" maxlength="10" value="{@expirationdate}">
+        </div>
+        <div class="col-md-4">
+          <label for="cvv">CVV</label><br>
+          <input type="text" id="cvv" name="cvv" maxlength="3" value="{@cvv}">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="panel panel-primary">
+    <div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> Call Status</div>
+    <div class="panel-body form-horizontal">
+      <div class="row">
+        <div class="col-md-8">
+          Remarks<br/>
+          <textarea rows="2"></textarea>
+        </div>
+        <div class="col-md-4">
+          Disposition
+          <select id="disposition" name="disposition">
+            <option value=""></option>
+            <option value="OT1">Order taken for 1 tank</option>
+            <option value="OT2">Order taken for 2or more tanks</option>
+            <option value="DEC">Order declined due to 0% tank</option>
+            <option value="DS">Delivery status</option>
+            <option value="DT">Defective tank</option>
+            <option value="PQ">Price quote</option>
+            <option value="NCS">New customer sign-up</option>
+            <option value="OT">Others</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br/><br/><br/>
