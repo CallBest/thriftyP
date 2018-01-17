@@ -3,63 +3,66 @@
       <div class="panel-body form-horizontal">
         <div class="row">
           <div class="col-md-6 col-md-offset-3">
-            <div class="form-group">
-              <label for="lastname" class="control-label col-sm-3">Last Name</label>
-              <div class="col-sm-8">
-                <input type="text" id="lastname" name="lastname" class="form-control" maxlength="50" value="">
+            <form name="search" method="post" action="csr.php">
+              <div class="form-group">
+                <label for="lastname" class="control-label col-sm-3">Last Name</label>
+                <div class="col-sm-8">
+                  <input type="text" id="lastname" name="lastname" class="form-control" maxlength="50" value="">
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="email" class="control-label col-sm-3">Email</label>
-              <div class="col-sm-8">
-                <input type="text" id="lastname" name="lastname" class="form-control" maxlength="50" value="">
+              <div class="form-group">
+                <label for="email" class="control-label col-sm-3">Email</label>
+                <div class="col-sm-8">
+                  <input type="text" id="email" name="email" class="form-control" maxlength="50" value="">
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="phone" class="control-label col-sm-3">Phone Number</label>
-              <div class="col-sm-8">
-                <input type="text" id="lastname" name="lastname" class="form-control" maxlength="50" value="">
+              <div class="form-group">
+                <label for="phone" class="control-label col-sm-3">Phone Number</label>
+                <div class="col-sm-8">
+                  <input type="text" id="phone" name="phone" class="form-control" maxlength="50" value="">
+                </div>
               </div>
-            </div>
-            <hr/>
-            <div class="form-group">
-              <label for="address" class="control-label col-sm-3">Address</label>
-              <div class="col-sm-8">
-                <input type="text" id="lastname" name="lastname" class="form-control" maxlength="50" value="">
+              <hr/>
+              <div class="form-group">
+                <label for="address" class="control-label col-sm-3">Address</label>
+                <div class="col-sm-8">
+                  <input type="text" id="address" name="address" class="form-control" maxlength="50" value="">
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="city" class="control-label col-sm-3">City</label>
-              <div class="col-sm-8">
-                <input type="text" id="lastname" name="lastname" class="form-control" maxlength="50" value="">
+              <div class="form-group">
+                <label for="city" class="control-label col-sm-3">City</label>
+                <div class="col-sm-8">
+                  <input type="text" id="city" name="city" class="form-control" maxlength="50" value="">
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="state" class="control-label col-sm-3">State</label>
-              <div class="col-sm-8">
-                <input type="text" id="lastname" name="lastname" class="form-control" maxlength="50" value="">
+              <div class="form-group">
+                <label for="state" class="control-label col-sm-3">State</label>
+                <div class="col-sm-8">
+                  <input type="text" id="state" name="state" class="form-control" maxlength="50" value="">
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="county" class="control-label col-sm-3">County</label>
-              <div class="col-sm-8">
-                <input type="text" id="lastname" name="lastname" class="form-control" maxlength="50" value="">
+              <div class="form-group">
+                <label for="county" class="control-label col-sm-3">County</label>
+                <div class="col-sm-8">
+                  <input type="text" id="county" name="county" class="form-control" maxlength="50" value="">
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="zipcode" class="control-label col-sm-3">ZIP</label>
-              <div class="col-sm-8">
-                <input type="text" id="lastname" name="lastname" class="form-control" maxlength="50" value="">
+              <div class="form-group">
+                <label for="zipcode" class="control-label col-sm-3">ZIP</label>
+                <div class="col-sm-8">
+                  <input type="text" id="zipcode" name="zipcode" class="form-control" maxlength="50" value="">
+                </div>
               </div>
-            </div>
-            <div class="text-center">
-              <button class="btn btn-primary btn-center">Search Customer Record</button>
-              <button class="btn btn-primary btn-warning">Clear Search</button>
-            </div>
+              <div class="text-center">
+                <input type="hidden" name="show" id="show" value="Search">
+                <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span></span> Search Customer Record</button>
+                <button class="btn btn-warning" type="reset"><span class="glyphicon glyphicon-remove"></span></span> Clear Search</button>
+                <a href="?show=New_Customer"><button class="btn btn-success" type="button"><span class="glyphicon glyphicon-plus"></span></span> New Customer</button></a>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>

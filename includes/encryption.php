@@ -4,7 +4,7 @@
  *------------------------------------------------------
  */
  
-define("CRYPT_KEY", "merchantsrock");
+define("CRYPT_KEY", "justmonika");
 
 class Encryption {
 	function encode($string) {

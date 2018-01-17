@@ -4,7 +4,7 @@ require_once("includes/cookie.php");
 require_once("includes/template.php");
 
 $body = new Template();
-$cookie = new CookieInfo("TP_admin");
+$cookie = new CookieInfo("TP_9");
 
 // check existing credentials before proceeding with tha application
 // redirect to login if no valid credentials found 
