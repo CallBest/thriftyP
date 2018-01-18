@@ -18,6 +18,7 @@
             <td>{@lastname}, {@firstname}</td>
             <td>{@remarks}</td>
             <td>{@tagdate}</td>
+            <td>{@userln}, {@userfn}</td>
             <td>{@disposition}</td>
           </tr>
         </loop gridvalues>
@@ -25,3 +26,10 @@
     </table>
   </div>
 </div>
+
+<script language="javascript">
+  function showlead(leadid) {
+    var nextlink = 'csr.php?show={@workingfolder}&leadid=' + leadid;
+    window.location = nextlink;
+  }
+</script>

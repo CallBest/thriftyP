@@ -36,7 +36,8 @@
 //actual query
   $db->query = "
     select * from " . TABLE_CLIENTS . " a 
-    inner join " . TABLE_DISPO . " c on (a.disposition=c.disposition)
+    inner join " . TABLE_DISPO . " b on (a.disposition=b.disposition)
+    inner join " . TABLE_USERS . " c on (a.userid=c.userid)
     where (
       (lastname like '%$lastname%')
       or (email like '%$email%')

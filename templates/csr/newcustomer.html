@@ -13,24 +13,24 @@
             <input type="text" id="lastname" name="lastname" maxlength="50">
           </div>
           <div class="col-md-4">
-            <label for="primaryphone">Primary phone</label><br>
-            <input type="text" id="primaryphone" name="primaryphone" maxlength="50">
+            <label for="phone">Primary phone</label><br>
+            <input type="text" id="phone" name="phone" maxlength="50">
           </div>
         </div>
         <div class="row">
           <div class="col-md-4">
-            <label for="address">Address</label><br>
-            <input type="text" id="address" name="address" maxlength="100">
+            <label for="address1">Address</label><br>
+            <input type="text" id="address1" name="address1" maxlength="100">
           </div>
           <div class="col-md-8">
-            <label for="city">City</label><br>
-            <input type="text" id="city" name="city" maxlength="50">
+            <label for="addresscity">City</label><br>
+            <input type="text" id="addresscity" name="addresscity" maxlength="50">
           </div>
         </div>
         <div class="row">
           <div class="col-md-4">
-            <label for="state">State</label><br>
-            <select id="state" name="state">
+            <label for="addressstate">State</label><br>
+            <select id="addressstate" name="addressstate">
               <option value="">---Please select a state---</option>
               <option value="DE">DELAWARE</option>
               <option value="IN">INDIANA</option>
@@ -43,13 +43,14 @@
             </select>
           </div>
           <div class="col-md-4">
-            <label for="county">County</label><br>
-            <select id="county" name="county">
+            <label for="addresscounty">County</label><br>
+            <select id="addresscounty" name="addresscounty">
+                <option value=""></option>
             </select>
           </div>
           <div class="col-md-4">
-            <label for="zipcode">Zip code</label><br>
-            <input type="text" id="zipcode" name="zipcode" maxlength="5">
+            <label for="addresszipcode">Zip code</label><br>
+            <input type="text" id="addresszipcode" name="addresszipcode" maxlength="5">
           </div>
         </div>
 
@@ -145,25 +146,19 @@
         <div class="row">
           <div class="col-md-8">
             Remarks<br/>
-            <textarea rows="2"></textarea>
+            <textarea rows="2" id="remarks" name="remarks"></textarea>
           </div>
           <div class="col-md-4">
             <p align="right">
               Disposition
               <select id="disposition" name="disposition">
-                <option value=""></option>
-                <option value="OT1">Order taken for 1 tank</option>
-                <option value="OT2">Order taken for 2or more tanks</option>
-                <option value="DEC">Order declined due to 0% tank</option>
-                <option value="DS">Delivery status</option>
-                <option value="DT">Defective tank</option>
-                <option value="PQ">Price quote</option>
-                <option value="NCS">New customer sign-up</option>
-                <option value="OT">Others</option>
+                <option value="New customer">New customer</option>
               </select>
               <br/><br/>
               <input type="hidden" id="refererpage" name="refererpage" value="{@refererpage}">
-              <button type="submit" class="btn btn-primary">Save</button>
+              <input type="hidden" id="userid" name="userid" value="{@userid}">
+              <input type="hidden" id="user" name="user" value="{@user}">
+              <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
             </p>
           </div>
         </div>

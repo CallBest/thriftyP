@@ -36,8 +36,6 @@ if ($_POST) {
     }
     exit;
 	}
-} else {
-  echo 'err';
 }
 
 $body->set_template("templates/login.html");

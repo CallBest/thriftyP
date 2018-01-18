@@ -12,6 +12,7 @@ if ($cookie->check()) {
   $cookie->getcookies();
   $userid = $cookie->array['userid'];
   $body->add_key('userid',$userid);
+  $body->add_key('user',$cookie->array['user']);
 	$body->add_key('userfn',$cookie->array['userfn']);
 	$body->add_key('userln',$cookie->array['userln']);
 //} else {
@@ -27,10 +28,15 @@ if (isset($_SERVER['HTTP_REFERER'])) {
   $body->add_key('refererpage',$_SERVER['HTTP_REFERER']);
 }
 $page = isset($_REQUEST['show']) ? strtolower(str_replace("'","",$_REQUEST['show'])) : 'dashboard';
+$body->add_key('mainpage',$_SERVER['SCRIPT_NAME']);
+$body->add_key('workingfolder',$page);
 switch($page){
   case 'search':
     $body->set_template("templates/csr/search.html");
-    if ($_POST) {
+    if (isset($_REQUEST['leadid'])){
+      $body->set_template("templates/csr/clientinfo.html");
+      include('scripts/csr/clientinfo.php');
+    } else if ($_POST) {
       echo $body->create();
       $body->set_template("templates/csr/searchresults.html");
       include('scripts/csr/search.php');
