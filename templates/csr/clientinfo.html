@@ -30,17 +30,17 @@
         <div class="row">
           <div class="col-md-4">
             <label for="addressstate">State</label><br>
-            <select id="addressstate" name="addressstate">
+            <select id="addressstate" name="addressstate" onchange="loadCounty('addresscounty','addressstate')">
               <option value="{@addressstate}">{@addressstate}</option>
               <option value="">---Please select a state---</option>
-              <option value="DE">DELAWARE</option>
-              <option value="IN">INDIANA</option>
-              <option value="KY">KENTUCKY</option>
-              <option value="MD">MARYLAND</option>
-              <option value="OH">OHIO</option>
-              <option value="PA">PENNSYLVANIA</option>
-              <option value="VA">VIRGINIA</option>
-              <option value="WV">WEST VIRGINIA</option>
+              <option value="DELAWARE">DELAWARE</option>
+              <option value="INDIANA">INDIANA</option>
+              <option value="KENTUCKY">KENTUCKY</option>
+              <option value="MARYLAND">MARYLAND</option>
+              <option value="OHIO">OHIO</option>
+              <option value="PENNSYLVANIA">PENNSYLVANIA</option>
+              <option value="VIRGINIA">VIRGINIA</option>
+              <option value="WEST VIRGINIA">WEST VIRGINIA</option>
             </select>
           </div>
           <div class="col-md-4">
@@ -61,6 +61,7 @@
               <option value="{@tankownership}">{@tankownership}</option>
               <option value="Owned">Owned</option>
               <option value="Leased">Leased</option>
+              <option value="Leased">Lease to own</option>
             </select>
           </div>
           <div class="col-md-4">
@@ -82,15 +83,15 @@
           <div class="col-md-4">
             <label for="billingstate">State</label><br>
             <select id="billingstate" name="billingstate">
-              <option value="{@state}">{@state}</option>
-              <option value="DE">DELAWARE</option>
-              <option value="IN">INDIANA</option>
-              <option value="KY">KENTUCKY</option>
-              <option value="MD">MARYLAND</option>
-              <option value="OH">OHIO</option>
-              <option value="PA">PENNSYLVANIA</option>
-              <option value="VA">VIRGINIA</option>
-              <option value="WV">WEST VIRGINIA</option>
+              <option value="{@billingstate}">{@billingstate}</option>
+              <option value="DELAWARE">DELAWARE</option>
+              <option value="INDIANA">INDIANA</option>
+              <option value="KENTUCKY">KENTUCKY</option>
+              <option value="MARYLAND">MARYLAND</option>
+              <option value="OHIO">OHIO</option>
+              <option value="PENNSYLVANIA">PENNSYLVANIA</option>
+              <option value="VIRGINIA">VIRGINIA</option>
+              <option value="WEST VIRGINIA">WEST VIRGINIA</option>
             </select>
           </div>
           <div class="col-md-4">
@@ -112,7 +113,7 @@
           </div>
           <div class="col-md-4">
             <label for="cardnumber">Card number</label><br>
-            <input type="text" id="cardnumber" name="cardnumber" maxlength="16" value="{@cardnumber}">
+            <input type="text" id="cardnumber" name="cardnumber" maxlength="19" value="{@cardnumber}">
           </div>
         </div>
         <div class="row">

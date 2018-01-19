@@ -11,7 +11,7 @@ define('TABLE_USERLOGS','thriftypropane.userlogs');
 define('TABLE_DISPO','thriftypropane.dispositions');
 define('TABLE_CLIENTS','thriftypropane.masterfile');
 define('TABLE_CLIENTINFO','thriftypropane.clientinfo');
-define('TABLE_HISTORY','thriftypropane.callhistory');
+define('TABLE_HISTORY','thriftypropane.clienthistory');
 define('TABLE_ORDERS','thriftypropane.orders');
 define('TABLE_DELIVERIES','thriftypropane.deliveries');
 ?>

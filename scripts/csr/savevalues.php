@@ -50,7 +50,13 @@ if ($phone<>'') {
   $db->query = "select * from " . TABLE_CLIENTS . " where phone='$phone'";
   $db->execute();
   if ($db->rowcount()==0) {
-    $db->query = "insert into masterfile (firstname,lastname,phone,userid) values ('$firstname','$lastname','$phone',$userid)";
+    $db->query = "insert into " . TABLE_CLIENTS . " (firstname,lastname,phone,userid) values ('$firstname','$lastname','$phone',$userid)";
+    $db->execute();
+    $db->query = "select * from " . TABLE_CLIENTS . " where phone='$phone'";
+    $db->execute();
+    $row = $db->fetchrow(0);
+    $leadid = $row['leadid'];
+    $db->query = "insert into " . TABLE_CLIENTINFO . " (leadid) values ($leadid)";
     $db->execute();  
   } else {
     $row = $db->fetchrow(0);
@@ -70,6 +76,18 @@ $db->query = "
     userid=$userid,disposition='$disposition',tagdate=now(),remarks=concat(now(),'- ($user): $remarks \n',remarks)
   where leadid=$leadid
   ";
+$db->execute();
+
+//callhistory
+$db->query = "
+  insert into " . TABLE_HISTORY . " (leadid,remarks,disposition,userid,tagdate)
+    values (
+      $leadid,
+      '$remarks',
+      '$disposition',
+      '$userid',
+      now()
+    )";
 $db->execute();
 
 header("Location: $refererpage");

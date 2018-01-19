@@ -6,7 +6,9 @@ body {
 }
 
 .mainform label {
-  font-size: 11px;
+  font-size: 12px;
+  margin-top: 15px;
+  margin-bottom: 0px;
 }
 .panel {
   margin: 20px 50px;
@@ -104,4 +106,8 @@ hr.double:after {
 
 textarea.display {
   border: 0px;
+}
+
+tr.searchresult {
+  font-size: 10px;
 }

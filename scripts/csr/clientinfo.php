@@ -9,6 +9,7 @@
   
   $db->query = "
     select * from " . TABLE_CLIENTS . " a
+    inner join " . TABLE_CLIENTINFO . " b on (a.leadid=b.leadid)
     where a.leadid=$leadid and a.userid=$userid
     ";
   $db->execute();
@@ -17,6 +18,5 @@
     $body->add_keys($row);
     include('dispositions.php');
 
-    $body->add_key('refererpage',$_SERVER['HTTP_REFERER']);
   }
 ?>

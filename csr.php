@@ -26,6 +26,8 @@ echo $body->create();
 // set the main content
 if (isset($_SERVER['HTTP_REFERER'])) {
   $body->add_key('refererpage',$_SERVER['HTTP_REFERER']);
+} else {
+  $body->add_key('refererpage','http://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']);
 }
 $page = isset($_REQUEST['show']) ? strtolower(str_replace("'","",$_REQUEST['show'])) : 'dashboard';
 $body->add_key('mainpage',$_SERVER['SCRIPT_NAME']);

@@ -7,56 +7,56 @@
     var node = document.createElement("option",{value:''});
     document.getElementById(county).appendChild(node);
     switch(document.getElementById(state).value) {
-      case 'DE':
+      case 'DELAWARE':
         for (var x=0; x < ctyDelaware.length; x++) {
           var node = document.createElement("option",{value: ctyDelaware[x]});
           node.innerHTML = ctyDelaware[x];
           document.getElementById(county).appendChild(node);
         }
         break;
-      case 'IN':
+      case 'INDIANA':
         for (var x=0; x < ctyIndiana.length; x++) {
           var node = document.createElement("option",{value: ctyIndiana[x]});
           node.innerHTML = ctyIndiana[x];
           document.getElementById(county).appendChild(node);
         }
         break;
-      case 'KY':
+      case 'KENTUCKY':
         for (var x=0; x < ctyKentucky.length; x++) {
           var node = document.createElement("option",{value: ctyKentucky[x]});
           node.innerHTML = ctyKentucky[x];
           document.getElementById(county).appendChild(node);
         }
         break;
-      case 'MD':
+      case 'MARYLAND':
         for (var x=0; x < ctyMaryland.length; x++) {
           var node = document.createElement("option",{value: ctyMaryland[x]});
           node.innerHTML = ctyMaryland[x];
           document.getElementById(county).appendChild(node);
         }
         break;
-      case 'OH':
+      case 'OHIO':
         for (var x=0; x < ctyOhio.length; x++) {
           var node = document.createElement("option",{value: ctyOhio[x]});
           node.innerHTML = ctyOhio[x];
           document.getElementById(county).appendChild(node);
         }
         break;
-      case 'PA':
+      case 'PENNSYLANIA':
         for (var x=0; x < ctyPennsylvania.length; x++) {
           var node = document.createElement("option",{value: ctyPennsylvania[x]});
           node.innerHTML = ctyPennsylvania[x];
           document.getElementById(county).appendChild(node);
         }
         break;
-      case 'VA':
+      case 'VIRGINIA':
         for (var x=0; x < ctyVirginia.length; x++) {
           var node = document.createElement("option",{value: ctyVirginia[x]});
           node.innerHTML = ctyVirginia[x];
           document.getElementById(county).appendChild(node);
         }
         break;
-      case 'WV':
+      case 'WEST VIRGINIA':
         for (var x=0; x < ctyWestVirginia.length; x++) {
           var node = document.createElement("option",{value: ctyWestVirginia[x]});
           node.innerHTML = ctyWestVirginia[x];
