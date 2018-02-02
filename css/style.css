@@ -111,3 +111,7 @@ textarea.display {
 tr.searchresult {
   font-size: 10px;
 }
+
+tr.searchresult:hover {
+  background: #99ccff;
+}

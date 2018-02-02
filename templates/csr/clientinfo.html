@@ -1,8 +1,17 @@
 <div class="container mainform">
   <form name="clientform" method="post" action="scripts/csr/savevalues.php">
     <div class="panel panel-primary">
-      <div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> Client Information</div>
-      <div class="panel-body form-horizontal">
+      
+      <div class="panel-heading panel-client">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="javascript:showtab('clientinfo');">Client Information</a></li>
+          <li><a href="javascript:showtab('otherinfo');">Other client details</a></li>
+          <li><a href="javascript:showtab('newfill');">New Fill / Prebuy</a></li>
+          <li><a href="javascript:showtab('tanksale');">Tank Sale</a></li>
+        </ul>
+      </div>
+      
+      <div class="panel-body form-horizontal" id="clientinfo">
         <div class="row">
           <div class="col-md-4">
             <label for="firstname">First name</label><br>
@@ -126,6 +135,39 @@
             <input type="text" id="cvv" name="cvv" maxlength="3" value="{@cvv}">
           </div>
         </div>
+      </div>
+
+      <div class="panel-body form-horizontal" id="otherinfo">
+        Tank ownership
+        Tank size        
+      </div>
+
+      <div class="panel-body form-horizontal" id="newfill">
+        Tank ownership
+        Tank size
+        Permanent delivery instructions
+
+        Billing Address
+        Billing City
+        Billing State
+        Billing Zip Code
+
+        Card Type
+        Card Number
+        Expiration Date
+        CCV
+      </div>
+
+      <div class="panel-body form-horizontal" id="tanksale">
+        Billing Address
+        Billing City
+        Billing State
+        Billing Zip Code
+
+        Card Type
+        Card Number
+        Expiration Date
+        CCV
       </div>
     </div>
 

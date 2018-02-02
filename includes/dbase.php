@@ -7,26 +7,23 @@ class dbconnection {
 	var $row;
 
 	function dbconnect($host=DBSERV,$user=DBUSER,$pass=DBPASS,$schema=DBNAME) {
-		if ($this->connection = @mysql_connect($host, $user, $pass)) {
-			@mysql_select_db($schema, $this->connection) or $this->errorout();
-		}
-		else {
-			$this->errorout();
+		if (@!$this->connection = @mysqli_connect($host, $user, $pass, $schema)) {
+      die('Connect Error (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
 		}
 	}
 	
 	function execute() {
 		if (isset($this->result)) {
-			@mysql_free_result($this->result);
+			@mysqli_free_result($this->result);
 		}
-		if (!$this->result = @mysql_query($this->query, $this->connection)) {
-			$this->errorout();
+		if (!$this->result = @mysqli_query($this->connection, $this->query)) {
+			die("Execution of a query to the database failed <em>" . $this->query ."</em> " . mysqli_error() );
 		}
 	}
 	
 	function rowcount() {
 		if (isset($this->result)) {
-			return @mysql_num_rows($this->result);
+			return @mysqli_num_rows($this->result);
 		}
 		else {
 			return -1;
@@ -35,77 +32,15 @@ class dbconnection {
 
 	function dbclose() {
 		if (isset($this->result)) {
-			@mysql_free_result($this->result);
+			@mysqli_free_result($this->result);
 		}
-		@mysql_close($this->connection);
-	}
-	
-	function getfield($field) {
-		if (isset($this->result)) {
-			@mysql_data_seek($this->result, 0);
-			$row = @mysql_fetch_array($this->result);
-		}
-		return $row[$field];
-	}
-	
-	function dbtablelink($link,$col) {
-		if (isset($this->result)) {
-			$x=0;
-			print "<table border=1 cellspacing=0 cellpadding=5>";
-			while(@mysql_data_seek($this->result, $x)) {
-				$row = @mysql_fetch_row($this->result);
-				print "<tr>";
-				for ($i=0;$i<=@mysql_num_fields($this->result);$i++) {
-					if (strtolower($col)==strtolower(@mysql_field_name($this->result,$i))) {
-							print "<td><a href='$link?$col=$row[$i]'>$row[$i]</a></td>";
-					}
-					elseif ($row[$i]=="") {
-						print "<td>&nbsp;</td>";
-					}
-					else {
-						print "<td>$row[$i]</td>";
-					}
-				}
-				print "</tr>\n";
-				$x++;
-			}
-			print "</table>";
-		}
-	}
-	
-	function display() {
-		if (isset($this->result)) {
-			$x=0;
-			print "<table border=1 cellspacing=0 cellpadding=5>";
-			while(@mysql_data_seek($this->result, $x)) {
-				$row = @mysql_fetch_row($this->result);
-				print "<tr>";
-				for ($i=0;$i<=@mysql_num_fields($this->result);$i++) {
-					if ($row[$i]=="") {
-						print "<td>&nbsp;</td>";
-					}
-					else {
-						print "<td>$row[$i]</td>";
-					}
-				}
-				print "</tr>\n";
-				$x++;
-			}
-			print "</table>";
-		}
+		@mysqli_close($this->connection);
 	}
 	
 	function fetchrow($i) {
 		if (isset($this->result)) {
-			if (@mysql_data_seek($this->result, $i)) {
-				$row = @mysql_fetch_array($this->result);
-				return $row;
-			}
+			return @mysqli_fetch_assoc($this->result);
 		}
-	}
-	
-	function errorout() {
-		die("Cannot connect to database. " . mysql_error());
 	}
 }
 ?>
