@@ -138,36 +138,168 @@
       </div>
 
       <div class="panel-body form-horizontal" id="otherinfo">
-        Tank ownership
-        Tank size        
+        <div class="row">
+          <div class="col-md-4">
+            <label for="tankownership">Tank Ownership</label><br>
+            <input type="text" id="tankownership" name="tankownership" maxlength="50" value="{@tankownership}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label for="tanksize">Tank Size</label><br>
+            <input type="text" id="tanksize" name="tanksize" maxlength="50" value="{@tanksize}">
+          </div>
+        </div>
       </div>
 
       <div class="panel-body form-horizontal" id="newfill">
-        Tank ownership
-        Tank size
-        Permanent delivery instructions
+        <div class="row">
+          <div class="col-md-4">
+            <label for="tankownership">Tank Ownership</label><br>
+            <input type="text" id="tankownership" name="tankownership" maxlength="50" value="{@tankownership}">
+          </div>
+          <div class="col-md-4">
+            <label for="tanksize">Tank Size</label><br>
+            <input type="text" id="tanksize" name="tanksize" maxlength="50" value="{@tanksize}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label for="percentremaining" class="required">Percent remaining</label><br>
+            <input type="text" id="percentremaining" name="percentremaining" maxlength="2">
+          </div>
+          <div class="col-md-4">
+            <label for="tanksize">Max allowed gallons</label><br>
+            <input type="text" id="tanksize" name="tanksize" maxlength="50" value="{@tanksize}">
+          </div>
+        </div>
+        <hr class="double"/>
+        <div class="row">
+          <div class="col-md-8">
+            <label for="permanentdeliveryinstructions">Permanent delivery instructions</label><br>
+            <textarea id="permanentdeliveryinstructions" name="permanentdeliveryinstructions" maxlength="100">{@permanentdeliveryinstructions}</textarea>
+          </div>
+        </div>
 
-        Billing Address
-        Billing City
-        Billing State
-        Billing Zip Code
+        <div class="row">
+          <div class="col-md-4">
+            <label for="billingaddress">Billing address</label><br>
+            <input type="text" id="billingaddress" name="billingaddress" maxlength="100" value="{@billingaddress}">
+          </div>
+          <div class="col-md-8">
+            <label for="billingcity">City</label><br>
+            <input type="text" id="billingcity" name="billingcity" maxlength="50" value="{@billingcity}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label for="billingstate">State</label><br>
+            <select id="billingstate" name="billingstate">
+              <option value="{@billingstate}">{@billingstate}</option>
+              <option value="DELAWARE">DELAWARE</option>
+              <option value="INDIANA">INDIANA</option>
+              <option value="KENTUCKY">KENTUCKY</option>
+              <option value="MARYLAND">MARYLAND</option>
+              <option value="OHIO">OHIO</option>
+              <option value="PENNSYLVANIA">PENNSYLVANIA</option>
+              <option value="VIRGINIA">VIRGINIA</option>
+              <option value="WEST VIRGINIA">WEST VIRGINIA</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="billingzipcode">Zip code</label><br>
+            <input type="text" id="billingzipcode" name="billingzipcode" maxlength="5" value="{@billingzipcode}">
+          </div>
+        </div>
 
-        Card Type
-        Card Number
-        Expiration Date
-        CCV
+        <div class="row">
+          <div class="col-md-4">
+            <label for="cardtype">Card type</label><br>
+            <select id="cardtype" name="cardtype">
+              <option value="{@cardtype}"></option>
+              <option value="">Visa</option>
+              <option value="">Mastercard</option>
+              <option value="">American Express</option>
+              <option value="">Discover</option>
+              <option value="">Others</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="cardnumber">Card number</label><br>
+            <input type="text" id="cardnumber" name="cardnumber" maxlength="19" value="{@cardnumber}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label for="expirationdate">Expiration date</label><br>
+            <input type="text" id="expirationdate" name="expirationdate" maxlength="10" value="{@expirationdate}">
+          </div>
+          <div class="col-md-4">
+            <label for="cvv">CVV</label><br>
+            <input type="text" id="cvv" name="cvv" maxlength="3" value="{@cvv}">
+          </div>
+        </div>
       </div>
 
       <div class="panel-body form-horizontal" id="tanksale">
-        Billing Address
-        Billing City
-        Billing State
-        Billing Zip Code
+        <div class="row">
+          <div class="col-md-4">
+            <label for="billingaddress">Billing address</label><br>
+            <input type="text" id="billingaddress" name="billingaddress" maxlength="100" value="{@billingaddress}">
+          </div>
+          <div class="col-md-8">
+            <label for="billingcity">City</label><br>
+            <input type="text" id="billingcity" name="billingcity" maxlength="50" value="{@billingcity}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label for="billingstate">State</label><br>
+            <select id="billingstate" name="billingstate">
+              <option value="{@billingstate}">{@billingstate}</option>
+              <option value="DELAWARE">DELAWARE</option>
+              <option value="INDIANA">INDIANA</option>
+              <option value="KENTUCKY">KENTUCKY</option>
+              <option value="MARYLAND">MARYLAND</option>
+              <option value="OHIO">OHIO</option>
+              <option value="PENNSYLVANIA">PENNSYLVANIA</option>
+              <option value="VIRGINIA">VIRGINIA</option>
+              <option value="WEST VIRGINIA">WEST VIRGINIA</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="billingzipcode">Zip code</label><br>
+            <input type="text" id="billingzipcode" name="billingzipcode" maxlength="5" value="{@billingzipcode}">
+          </div>
+        </div>
 
-        Card Type
-        Card Number
-        Expiration Date
-        CCV
+        <div class="row">
+          <div class="col-md-4">
+            <label for="cardtype">Card type</label><br>
+            <select id="cardtype" name="cardtype">
+              <option value="{@cardtype}"></option>
+              <option value="">Visa</option>
+              <option value="">Mastercard</option>
+              <option value="">American Express</option>
+              <option value="">Discover</option>
+              <option value="">Others</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="cardnumber">Card number</label><br>
+            <input type="text" id="cardnumber" name="cardnumber" maxlength="19" value="{@cardnumber}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label for="expirationdate">Expiration date</label><br>
+            <input type="text" id="expirationdate" name="expirationdate" maxlength="10" value="{@expirationdate}">
+          </div>
+          <div class="col-md-4">
+            <label for="cvv">CVV</label><br>
+            <input type="text" id="cvv" name="cvv" maxlength="3" value="{@cvv}">
+          </div>
+        </div>  
       </div>
     </div>
 

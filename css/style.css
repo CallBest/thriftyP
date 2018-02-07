@@ -104,6 +104,11 @@ hr.double:after {
 	border-bottom: 1px solid #fff;
 }
 
+label.required {
+  font-weight: bold;
+  color: red;
+}
+
 textarea.display {
   border: 0px;
 }
