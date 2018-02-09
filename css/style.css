@@ -5,6 +5,11 @@ body {
   
 }
 
+.bold {
+  font-size: 16px;
+  font-weight: 900;
+}
+
 .mainform label {
   font-size: 12px;
   margin-top: 15px;
