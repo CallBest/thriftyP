@@ -5,6 +5,7 @@ use thriftypropane;
 grant select,update,insert on thriftypropane.* to propanemaster@localhost identified by 'propanemaster125!';
 grant select,update,insert on thriftypropane.* to propanemaster@'%' identified by 'propanemaster125!';
 
+DROP TABLE IF EXISTS users;
 create table users (
 	userid int(11) not null auto_increment,
 	username varchar(50) not null default '',
@@ -20,6 +21,7 @@ create table users (
 	primary key (userid)
 ) ENGINE=InnoDB AUTO_INCREMENT=101;
 
+DROP TABLE IF EXISTS usertypes;
 create table usertypes (
 	usertype int(11) not null auto_increment,
 	usertypedesc varchar(50) not null default '',
@@ -40,12 +42,14 @@ insert into users (userid,username,password,userfn,userln,usertype,datecreated)
 	(5,'admin','23N28cKTfg.zQ','Global','Admin',9,now())	
 	;
 
+DROP TABLE IF EXISTS teams;
 create table teams (
 	teamid int(11) not null auto_increment,
 	teamname varchar(50) not null default '',
 	primary key (teamid)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
+DROP TABLE IF EXISTS userlogs;
 create table userlogs (
 	logid int(11) not null auto_increment,
 	userid int(11) not null default 0,
@@ -56,6 +60,7 @@ create table userlogs (
 	primary key (logid)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
+DROP TABLE IF EXISTS dispositions;
 create table dispositions (
 	dispoid int(11) not null auto_increment,
 	disposition varchar(50) not null default '',
@@ -72,63 +77,43 @@ create table dispositions (
 insert into dispositions (dispoid,disposition,dispocode,livecall,sale,callback,fresh,selectable,usertype)
 	values
 	(1,'New Customer','New Customer',0,0,0,1,0,0),
-	(2,'Delivery Placed','Delivery Placed',0,0,0,1,0,0),
-	(3,'Order Placed','Order Placed',0,0,0,1,0,0),
-	(4,'For Delivery','For Delivery',0,0,0,1,0,0),
-	(5,'Price Quote + Sale','Price Quote + Sale',0,0,0,1,0,0),
-	(6,'Pre-buy Quote + Sale','Pre-buy Quote + Sale',0,0,0,1,0,0),
-	(7,'Tank Quote + Sale','Tank Quote + Sale',0,0,0,1,0,0),
-	(8,'Price Quote (No Sale)','Price Quote (No Sale)',0,0,0,1,0,0),
-	(9,'Pre-buy Quote (No Sale)','Pre-buy Quote (No Sale)',0,0,0,1,0,0),
-	(10,'Tank Quote (No Sale)','Tank Quote (No Sale)',0,0,0,1,0,0),
-	(11,'Tank Purchase / LTO (No Sale)','Tank Purchase / LTO (No Sale)',0,0,0,1,0,0),
-	(12,'Price Match Request','Price Match Request',0,0,0,1,0,0),
-	(13,'Do Not Call','Do Not Call',0,0,0,1,0,0),
-	(14,'Inquiry','Inquiry',0,0,0,1,0,0),
-	(15,'Complaint','Complaint',0,0,0,1,0,0)
+	(2,'Place Order','Place Order',0,0,0,1,1,0),
+	(3,'For Delivery','For Delivery',0,0,0,1,1,2),
+	(4,'Price Quote (No Sale)','Price Quote (No Sale)',0,0,0,1,1,0),
+	(5,'Pre-buy Quote (No Sale)','Pre-buy Quote (No Sale)',0,0,0,1,1,0),
+	(6,'Tank Quote (No Sale)','Tank Quote (No Sale)',0,0,0,1,1,0),
+	(7,'Tank Purchase / LTO (No Sale)','Tank Purchase / LTO (No Sale)',0,0,0,1,1,0),
+	(8,'Price Match Request','Price Match Request',0,0,0,1,1,0),
+	(9,'Do Not Call','Do Not Call',0,0,0,1,1,0),
+	(10,'Inquiry','Inquiry',0,0,0,1,1,0),
+	(11,'Complaint','Complaint',0,0,0,1,1,0)
 	;
 
+DROP TABLE IF EXISTS masterfile;
 create table masterfile (
 	leadid int(11) not null auto_increment,
 	lastname varchar(150) not null default '',
 	firstname varchar(150) not null default '',
 	phone varchar(100) not null default '',
-	address1 varchar(100) not null default '',
-	address2 varchar(100) not null default '',
+	address varchar(100) not null default '',
 	addresscity varchar(100) not null default '',
 	addresscounty varchar(100) not null default '',
 	addressstate varchar(50) not null default '',
 	addresszipcode varchar(50) not null default '',
 	email varchar(50) not null default '',
 	remarks text not null default '',
-	disposition varchar(50) not null default '',
-	userid int(11) not null default 0,
-	tagdate datetime not null default '0000-00-00 00:00:00',
-	primary key (leadid)
-) ENGINE=InnoDB AUTO_INCREMENT=100001;
-
-alter table masterfile add index (lastname);
-alter table masterfile add index (firstname);
-alter table masterfile add index (disposition);
-alter table masterfile add index (userid);
-alter table masterfile add index (tagdate);
-alter table masterfile add index (address1);
-alter table masterfile add index (addresscity);
-alter table masterfile add index (addressstate);
-alter table masterfile add index (addresscounty);
-alter table masterfile add index (addresszipcode);
-
-create table clientinfo (
-	recordid int(11) not null auto_increment,
-	leadid int(11) not null default 0,
+	accountnumber int(11) not null default 0,
+	referralcode varchar(50) not null default '',
+	referralcredit float not null default 0.00,
 	billingaddress varchar(100) not null default '',
 	billingcity varchar(100) not null default '',
+	billingcounty varchar(100) not null default '',
 	billingstate varchar(100) not null default '',
 	billingzipcode varchar(100) not null default '',
 	cardtype varchar(100) not null default '',
-	cardnumber varchar(16) not null default '',
+	cardnumber varchar(19) not null default '',
 	expirationdate varchar(100) not null default '',
-	cvv varchar (3) not null default '',
+	cvv varchar(3) not null default '',
 	creditcardzip varchar(100) not null default '',
 	countytax varchar(100) not null default '',
 	haspricecap bit not null default 0,
@@ -140,12 +125,10 @@ create table clientinfo (
 	tiergalloncoverage varchar(100) not null default '',
 	restrictedprebuygallons varchar(100) not null default '',
 	taxexempt bit not null default 0,
-	leased bit not null default 0,
-	customerowned bit not null default 0,
-	leasetoown bit not null default 0,
+	tankownership varchar(50) not null default '',
+	tanksize varchar(100) not null default '',
 	hasprebuyannualfee bit not null default 0,
 	prebuyfeestartdate varchar(100) not null default '',
-	tanksize varchar(100) not null default '',
 	serialnumber varchar(100) not null default '',
 	tankannualmaintenancefee varchar(100) not null default '',
 	maintenancefeestartdate varchar(100) not null default '',
@@ -154,14 +137,26 @@ create table clientinfo (
 	permanentdeliveryinstructions varchar(100) not null default '',
 	notes text not null default '',
 	marknoservice bit not null default 0,
-	markdrivewaydificult bit not null default 0,
+	markdrivewaydifficult bit not null default 0,
 	problemcustomer bit not null default 0,
-	primary key (recordid),
-	unique key leadid (leadid)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+	disposition varchar(50) not null default '',
+	userid int(11) not null default 0,
+	tagdate datetime not null default '0000-00-00 00:00:00',
+	primary key (leadid)
+) ENGINE=InnoDB AUTO_INCREMENT=100001;
 
-alter table clientinfo add index (leadid);
+alter table masterfile add index (lastname);
+alter table masterfile add index (firstname);
+alter table masterfile add index (disposition);
+alter table masterfile add index (userid);
+alter table masterfile add index (tagdate);
+alter table masterfile add index (address);
+alter table masterfile add index (addresscity);
+alter table masterfile add index (addressstate);
+alter table masterfile add index (addresscounty);
+alter table masterfile add index (addresszipcode);
 
+DROP TABLE IF EXISTS clienthistory;
 create table clienthistory (
 	historyid int(11) not null auto_increment,
 	leadid int(11) not null default 0,
@@ -174,22 +169,37 @@ create table clienthistory (
 
 alter table clienthistory add index (leadid);
 
+DROP TABLE IF EXISTS orders;
 create table orders (
 	orderid int(11) not null auto_increment,
 	leadid int(11) not null default 0,
 	ordertype varchar(50) not null default '',
+	tanksize varchar(50) not null default '',
 	gallons varchar(50) not null default '',
 	ppg varchar(50) not null default '',
+	expressdelivery bit not null default 0,
+	billingaddress varchar(100) not null default '',
+	billingcity varchar(100) not null default '',
+	billingcounty varchar(100) not null default '',
+	billingstate varchar(100) not null default '',
+	billingzipcode varchar(100) not null default '',
+	cardtype varchar(100) not null default '',
+	cardnumber varchar(19) not null default '',
+	expirationdate varchar(100) not null default '',
+	cvv varchar (3) not null default '',
+	creditcardzip varchar(100) not null default '',
+	totalamount float not null default 0.00,
 	orderdate datetime not null default '0000-00-00 00:00:00',
 	primary key (orderid)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
+DROP TABLE IF EXISTS deliveries;
 create table deliveries (
 	deliveryid int(11) not null auto_increment,
 	leadid int(11) not null default 0,
 	entereddate datetime not null default '0000-00-00 00:00:00',
 	scheduled datetime not null default '0000-00-00 00:00:00',
-	assigneddriver int(11) not null default '',
+	assigneddriver int(11) not null default 0,
 	delivereddate datetime not null default '0000-00-00 00:00:00',
 	gallonsppg varchar(50) not null default '',
 	iscompleted bit not null default 0,

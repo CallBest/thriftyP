@@ -1,12 +1,12 @@
 <?php
-  $lastname = str_replace(' ','%',$_REQUEST['lastname']);
-  $email = str_replace(' ','%',$_REQUEST['email']);
-  $phone = str_replace(' ','%',$_REQUEST['phone']);
-  $address = str_replace(' ','%',$_REQUEST['address']);
-  $city = str_replace(' ','%',$_REQUEST['city']);
-  $state = str_replace(' ','%',$_REQUEST['state']);
-  $county = str_replace(' ','%',$_REQUEST['county']);
-  $zipcode = str_replace(' ','%',$_REQUEST['zipcode']);
+  $lastname = str_replace(' ','%',$_REQUEST['searchlastname']);
+  $email = str_replace(' ','%',$_REQUEST['searchemail']);
+  $phone = str_replace(' ','%',$_REQUEST['searchphone']);
+  $address = str_replace(' ','%',$_REQUEST['searchaddress']);
+  $city = str_replace(' ','%',$_REQUEST['searchcity']);
+  $state = str_replace(' ','%',$_REQUEST['searchstate']);
+  $county = str_replace(' ','%',$_REQUEST['searchcounty']);
+  $zipcode = str_replace(' ','%',$_REQUEST['searchzipcode']);
 
   require_once('includes/settings.php');
   require_once('includes/dbase.php');
@@ -40,13 +40,13 @@
     inner join " . TABLE_USERS . " c on (a.userid=c.userid)
     where (
       (lastname like '%$lastname%')
-      or (email like '%$email%')
-      or (phone like '%$phone%')
-      or (address1 like '%$address%')
-      or (addresscity like '%$city%')
-      or (addressstate like '%$state%')
-      or (addresscounty like '%$county%')
-      or (addresszipcode like '%$zipcode%')
+      and (email like '%$email%')
+      and (phone like '%$phone%')
+      and (address like '%$address%')
+      and (addresscity like '%$city%')
+      and (addressstate like '%$state%')
+      and (addresscounty like '%$county%')
+      and (addresszipcode like '%$zipcode%')
     )
     order by $sort limit $start, $end";
   $db->execute();

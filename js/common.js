@@ -42,7 +42,7 @@
           document.getElementById(county).appendChild(node);
         }
         break;
-      case 'PENNSYLANIA':
+      case 'PENNSYLVANIA':
         for (var x=0; x < ctyPennsylvania.length; x++) {
           var node = document.createElement("option",{value: ctyPennsylvania[x]});
           node.innerHTML = ctyPennsylvania[x];

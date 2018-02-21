@@ -7,7 +7,7 @@ body {
 
 .bold {
   font-size: 16px;
-  font-weight: 900;
+  font-weight: bold;
 }
 
 .mainform label {
@@ -37,7 +37,12 @@ body {
 }
 .panel-body {
   background: #F0F0F0;
-  border: 2px solid #909090;
+}
+
+.radio-button {
+  display: inline-block;
+  border: 1px solid green;
+  border-radius: 3px;
 }
 
 .rowset {
@@ -99,14 +104,17 @@ body {
 
 hr.double {
 	border-top: 1px solid #8c8b8b;
-	border-bottom: 1px solid #fff;
+	border-bottom: 1px solid #222222;
 }
 hr.double:after {
 	content: '';
 	display: block;
 	margin-top: 2px;
 	border-top: 1px solid #8c8b8b;
-	border-bottom: 1px solid #fff;
+	border-bottom: 1px solid #222222;
+}
+hr.single {
+	border-top: 1px dotted #555555;
 }
 
 label.required {

@@ -1,9 +1,9 @@
 $(document).ready(function (){
   var taxtable = {
-    'DE' : {
+    'DELAWARE' : {
       'NewCastle': 0
       },
-    'IN' : {
+    'INDIANA' : {
       'Adams': 0.07,
       'Allen': 0.07,
       'Bartholomew': 0.07,
@@ -62,7 +62,7 @@ $(document).ready(function (){
       'Wells': 0.07,
       'Whitley': 0.07
       },
-    'KY' : {
+    'KENTUCKY' : {
       'Boone': 0,
       'Campbell': 0,
       'Caroll': 0,
@@ -76,7 +76,7 @@ $(document).ready(function (){
       'Pendelton': 0,
       'Trimble': 0
       },
-    'MD' : {
+    'MARYLAND' : {
       'Allegany': 0,
       'AnneArundel': 0,
       'Baltimore': 0,
@@ -92,7 +92,7 @@ $(document).ready(function (){
       "Queen Anne's": 0,
       'Washington': 0
       },
-    'OH' : {
+    'OHIO' : {
       'Adams': 0.0725,
       'Allen': 0.0675,
       'Ashland': 0.07,
@@ -179,7 +179,7 @@ $(document).ready(function (){
       'Wood': 0.0675,
       'Wyandot': 0.0725
       },
-    'PA' : {
+    'PENNSYLVANIA' : {
       'Adams': 0,
       'Alleghany': 0,
       'Armstrong': 0,
@@ -236,13 +236,13 @@ $(document).ready(function (){
       'Westmoreland': 0,
       'York': 0
       },
-    'VA' : {
+    'VIRGINIA' : {
       'Clarke': 0,
       'Frederick': 0,
       'Loudoun': 0,
       'Shenandoah': 0
       },
-    'WV' : {
+    'WEST VIRGINIA' : {
       'Berkeley': 0,
       'Brooke': 0,
       'Hancock': 0,
@@ -255,6 +255,10 @@ $(document).ready(function (){
       'Wetzel': 0
       }
   };
+
+  function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
 
   $("#addtank").click(function(){
     var elemCount = document.getElementsByClassName('rowset').length;
@@ -295,10 +299,7 @@ $(document).ready(function (){
 
   $("#calculate").click(function(){
     //validate input
-    if ((document.getElementById('state').value=='') || (document.getElementById('county').value=='')) {
-      alert('Please select a state and county.');
-      return false;
-    } else if (document.getElementById('ppg').value=='') {
+    if (document.getElementById('calcppg').value=='') {
       alert('Price per gallon needed to compute.');
       return false;
     } else if (document.getElementById('tanksize[0]').value=='') {
@@ -308,7 +309,7 @@ $(document).ready(function (){
       alert('Tank percentage remaining needed to compute.');
       return false;
     }
-    var ppg = parseFloat(document.getElementById('ppg').value).toFixed(3);
+    var ppg = parseFloat(document.getElementById('calcppg').value).toFixed(3);
     //calculate gallons needed
     var tanks = document.getElementsByClassName('rowset').length;
     var needs = 0;
@@ -319,8 +320,8 @@ $(document).ready(function (){
     }
     
     //calculate tax
-    var stateval = document.getElementById('state').value;
-    var countyval = document.getElementById('county').value.replace(' ','');
+    var stateval = document.getElementById('addressstate').value;
+    var countyval = toTitleCase(document.getElementById('addresscounty').value).replace(' ','');
     var tax = taxtable[stateval][countyval];
     var taxamount = parseFloat(+needs * +ppg * +tax).toFixed(2);
     

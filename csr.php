@@ -14,7 +14,8 @@ if ($cookie->check()) {
   $body->add_key('userid',$userid);
   $body->add_key('user',$cookie->array['user']);
 	$body->add_key('userfn',$cookie->array['userfn']);
-	$body->add_key('userln',$cookie->array['userln']);
+  $body->add_key('userln',$cookie->array['userln']);
+  $usertype = $cookie->array['usertype'];
 //} else {
 //  header('Location: index.php');
 }

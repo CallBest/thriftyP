@@ -1,6 +1,7 @@
 <?php
+ini_set( "display_errors", false );
+date_default_timezone_set( "America/New_York" );
 
-//define('DBSERV','localhost');
 define('DBSERV','localhost');
 define('DBUSER','propanemaster');
 define('DBPASS','propanemaster125!');

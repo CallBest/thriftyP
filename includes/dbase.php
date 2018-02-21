@@ -30,13 +30,17 @@ class dbconnection {
 		}
 	}
 
+	function last_id() {
+		return @mysqli_insert_id($this->connection);
+	}
+
 	function dbclose() {
 		if (isset($this->result)) {
 			@mysqli_free_result($this->result);
 		}
 		@mysqli_close($this->connection);
 	}
-	
+
 	function fetchrow($i) {
 		if (isset($this->result)) {
 			return @mysqli_fetch_assoc($this->result);

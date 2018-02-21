@@ -13,6 +13,7 @@ function cleanstring($string) {
   return $newstring;
 }
 
+$leadid = $_REQUEST['leadid'];
 $userid = $_REQUEST['userid'];
 $user = $_REQUEST['user'];
 $disposition = $_REQUEST['disposition'];
@@ -26,47 +27,44 @@ $datafields = array (
   'lastname',
   'firstname',
 	'phone',
-	'address1',
+	'address',
 	'addresscity',
 	'addresscounty',
 	'addressstate',
-	'addresszipcode'
+  'addresszipcode',
+  'email',
+  'accountnumber',
+  'referralcode',
+  'referralcredit',
+  'markdrivewaydifficult',
+  'marknoservice',
+  'problemcustomer',
+  'tankownership',
+  'tanksize',
+  'cardtype',
+  'cardnumber',
+  'expirationdate',
+  'cvv',
+  'permanentdeliveryinstructions'
 );
 
 $setfields = "";
 foreach ($datafields as $key => $value) {
-  if (!(($value=='email') || ($value=='companyemail'))) {
+  if (!(($value=='email') || ($value=='cardnumber'))) {
     $curfield = cleanstring($_POST["$value"]);
     $$value = $curfield;
   } else {
     $curfield = $_POST["$value"];
     $$value = $curfield;
   }
-  $setfields .= "$value='$curfield',";
-}
-
-//<temporary>
-if ($phone<>'') {
-  $db->query = "select * from " . TABLE_CLIENTS . " where phone='$phone'";
-  $db->execute();
-  if ($db->rowcount()==0) {
-    $db->query = "insert into " . TABLE_CLIENTS . " (firstname,lastname,phone,userid) values ('$firstname','$lastname','$phone',$userid)";
-    $db->execute();
-    $db->query = "select * from " . TABLE_CLIENTS . " where phone='$phone'";
-    $db->execute();
-    $row = $db->fetchrow(0);
-    $leadid = $row['leadid'];
-    $db->query = "insert into " . TABLE_CLIENTINFO . " (leadid) values ($leadid)";
-    $db->execute();  
+  if (($value=='cardnumber') && (substr($cardnumber,0,14)!='XXXX-XXXX-XXXX')) {
+    $setfields .= "$value='$curfield',";
+  } else if (($value=='cardnumber') && (substr($cardnumber,0,14)=='XXXX-XXXX-XXXX')) {
+    //do not overwrite card number if there is an existing card num
   } else {
-    $row = $db->fetchrow(0);
-    $leadid = $row['leadid'];
+    $setfields .= "$value='$curfield',";
   }
-} else {
-  header("Location: $refererpage");
 }
-//</temporary>
-
 
 //masterfile
 $db->query = "
@@ -77,6 +75,50 @@ $db->query = "
   where leadid=$leadid
   ";
 $db->execute();
+
+//orders
+if ($disposition == 'Place Order') {
+  if ((isset($_REQUEST['newtankorder'])) && (isset($_REQUEST['buytank']))) {
+    $ordertype = 'Tank';
+    $tanksize = $_REQUEST['buytank'];
+  }
+  if (isset($_REQUEST['newprebuyorder'])) {
+    $ordertype = 'Pre-buy';
+  } else if (isset($_REQUEST['newfillorder'])) {
+    $ordertype = 'Fill';
+  }
+  $gallons = $_REQUEST['gallons'];
+  $ppg = $_REQUEST['ppg'];
+  if (isset($_REQUEST['expressdelivery'])) {
+    $expressdelivery = '1';
+  } else {
+    $expressdelivery = "0";
+  }
+  $datafields = array (
+    'billingaddress',
+    'billingcity',
+    'billingcounty',
+    'billingstate',
+    'billingzipcode',
+    'cardtype',
+    'cardnumber',
+    'expirationdate',
+    'cvv',
+    'creditcardzip',
+    'totalamount'
+  );
+
+  $setfields = "";
+  foreach ($datafields as $key => $value) {
+    $curfield = $_POST["$value"];
+    $$value = $curfield;
+    $setfields .= "$value='$curfield',";
+  }
+
+  $db->query = "insert into ".TABLE_ORDERS." (leadid,ordertype,tanksize,gallons,ppg,expressdelivery,billingaddress,billingcity,billingcounty,billingstate,billingzipcode,cardtype,cardnumber,expirationdate,cvv,creditcardzip,totalamount,orderdate)
+      values ($leadid,'$ordertype','$tanksize','$gallons','$ppg','$expressdelivery',$setfields now())";
+  $db->execute();
+}
 
 //callhistory
 $db->query = "
