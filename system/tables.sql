@@ -190,6 +190,11 @@ create table orders (
 	creditcardzip varchar(100) not null default '',
 	totalamount float not null default 0.00,
 	orderdate datetime not null default '0000-00-00 00:00:00',
+	paid bit not null default 0,
+	paymethod varchar(10) not null default '',
+	payamount float not null default 0.00,
+	delivered bit not null default 0,
+	deliverydate datetime not null default '0000-00-00 00:00:00',
 	primary key (orderid)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 

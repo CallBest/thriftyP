@@ -71,7 +71,7 @@ $db->query = "
   update " . TABLE_CLIENTS . "
   set
     $setfields
-    userid=$userid,disposition='$disposition',tagdate=now(),remarks=concat(now(),'- ($user): $remarks \n',remarks)
+    userid=$userid,disposition='$disposition',tagdate=now(),remarks='$remarks'
   where leadid=$leadid
   ";
 $db->execute();
@@ -85,7 +85,7 @@ if ($disposition == 'Place Order') {
   if (isset($_REQUEST['newprebuyorder'])) {
     $ordertype = 'Pre-buy';
   } else if (isset($_REQUEST['newfillorder'])) {
-    $ordertype = 'Fill';
+    $ordertype = 'Regular fill';
   }
   $gallons = $_REQUEST['gallons'];
   $ppg = $_REQUEST['ppg'];

@@ -1,4 +1,4 @@
-INSERT INTO `masterfile` (`leadid`, `lastname`, `firstname`, `phone`, `address`, `addresscity`, `addresscounty`, `addressstate`, `addresszipcode`, `email`, `disposition`, `userid`, `tagdate`) VALUES
+INSERT INTO thriftypropane.`masterfile` (`leadid`, `lastname`, `firstname`, `phone`, `address`, `addresscity`, `addresscounty`, `addressstate`, `addresszipcode`, `email`, `disposition`, `userid`, `tagdate`) VALUES
 (100002, 'SMITH', 'KENNY', '937-446-2475', '10952 MARTIN ALEXANDER RD', 'SARDINIA', 'ADAMS', 'OHIO', '45171', '', 'New Customer', 1, '0000-00-00 00:00:00'),
 (100003, 'SMITH', 'JUSTIN', '513-876-2018', '754 HOPEWELL RD', 'FELICITY', 'ADAMS', 'OHIO', '45120', '', 'New Customer', 1, '0000-00-00 00:00:00'),
 (100004, 'BANKS', 'JAMES', '513-876-2745', '1238 COLLIER RD', 'MOSCOW', 'ADAMS', 'OHIO', '45153', '', 'New Customer', 1, '0000-00-00 00:00:00'),

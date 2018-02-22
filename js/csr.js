@@ -317,7 +317,7 @@ function calculateOrder() {
     var e = document.getElementById("buytank");
     var buytank = e.options[e.selectedIndex].value;
     addtankprice = tankprice[buytank];
-    tankorder = 'New tank order ';
+    tankorder = 'Tank ';
   }
   var gallons = document.getElementById('gallons').value;
   var ppg = document.getElementById('ppg').value;
@@ -332,20 +332,20 @@ function calculateOrder() {
   var taxamount = parseFloat(+gallons * +ppg * +tax).toFixed(2);
   var subtotal = parseFloat(+gallons * +ppg + +taxamount).toFixed(2);
 
-  var hazmatfee = 0.00;
-  var storagefee = 0.00;
-  hazmatfee = Math.ceil(gallons/250) * 19.94;
+  var hazmatfee = (0.00).toFixed(2);
+  var storagefee = (0.00).toFixed(2);
+  hazmatfee = (Math.ceil(gallons/250) * 19.94).toFixed(2);
   if (document.getElementById('newprebuyorder').checked) {
     ordertype = 'Pre-buy';
     storagefee = gallons * 0.02;
   }
   var total = (+subtotal + +hazmatfee + +storagefee + +addtankprice).toFixed(2);
-  var ccfee = 0.00;
+  var ccfee = (0.00).toFixed(2);
   if (document.getElementById('paywithcc').checked) {
     ccfee = 9.99;
     total = (+total + +9.99).toFixed(2);
   }
-  var expressdelivery = 0.00;
+  var expressdelivery = (0.00).toFixed(2);
   if (document.getElementById('expressdelivery').checked) {
     expressdelivery = 250.00;
     total = (+total + +250.00).toFixed(2);
@@ -353,20 +353,20 @@ function calculateOrder() {
 
   var prompt = `
   <pre>
-  Tank price               -----   `+ addtankprice +`
+  Order type: ==========`+ ordertype +`===========
+  Tank price               -----   $`+ addtankprice +`
   Gallons needed           -----   `+ gallons +`
   Price per gallon         -----   $ `+ ppg +`
-  Tax                      -----   `+ (+tax*100).toFixed(2) +` %
+  Tax                      -----   $ `+ (+tax*100).toFixed(2) +` %
   Tax amount               -----   $ `+ taxamount +`
   Subtotal                 -----   $ `+ subtotal +`
   Hazmat fee               -----   $ `+ hazmatfee +`
   Storage fee (prebuy)     -----   $ `+ storagefee +`
   Credit card fee          -----   $ `+ ccfee +`
   Express delivery fee     -----   $ `+ expressdelivery +`
-  TOTAL               ---------------   $ `+ total;`
+  TOTAL               ---------------   $ `+ total +`
   </pre>`;
   document.getElementById('calculatehere').innerHTML = prompt;
-  document.getElementById('total').innerHTML = "<h2>Order type: " + tankorder + ordertype + "<br/>Total price: $ " + total + "</h2>";
   document.getElementById('totalamount').value = total;
 }
 
@@ -378,4 +378,20 @@ var tankprice = {
   '1000 Gallon AG': 1899,
   '500 Gallon UG' : 1599,
   '1000 Gallon UG': 2599
+}
+
+function checkValues() {
+  var disposition = document.getElementById('disposition').value.toLowerCase();
+  if (disposition == 'place order') {
+    if ((document.getElementById('newtankorder').checked == false) &&
+        (document.getElementById('newfillorder').checked == false) &&
+        (document.getElementById('newprebuyorder').checked == false)) {
+      alert('Please check one order type (tank / fill / pre-buy)');
+      return false;
+    }
+    if (document.getElementById('totalamount').value == '') {
+      alert('Press the button [Calculate price] to finalize the amount.');
+      return false;
+    }
+  }
 }

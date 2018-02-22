@@ -312,41 +312,52 @@ $(document).ready(function (){
     var ppg = parseFloat(document.getElementById('calcppg').value).toFixed(3);
     //calculate gallons needed
     var tanks = document.getElementsByClassName('rowset').length;
-    var needs = 0;
+    var gallons = 0;
     for (x = 0; x < tanks; x++) {
       var size = parseInt(document.getElementById('tanksize['+x+']').value);
       var remaining = parseInt(document.getElementById('remaining['+x+']').value);
-      needs += Math.floor(size * ((85 - remaining) / 100));
+      gallons += Math.floor(size * ((85 - remaining) / 100));
     }
     
     //calculate tax
     var stateval = document.getElementById('addressstate').value;
     var countyval = toTitleCase(document.getElementById('addresscounty').value).replace(' ','');
     var tax = taxtable[stateval][countyval];
-    var taxamount = parseFloat(+needs * +ppg * +tax).toFixed(2);
+    var taxamount = parseFloat(+gallons * +ppg * +tax).toFixed(2);
+    var subtotal = parseFloat(+gallons * +ppg + +taxamount).toFixed(2);
     
-    var subtotal = parseFloat(+needs * +ppg + +taxamount).toFixed(2);
-    var hazmatfee = 19.94;
-    var storagefee = 0;
-    var checktotal = (+subtotal + +hazmatfee).toFixed(2);
-    var cctotal = (+subtotal + +hazmatfee + +9.99).toFixed(2);
+    var hazmatfee = (0.00).toFixed(2);
+    var storagefee = (0.00).toFixed(2);
+    hazmatfee = (Math.ceil(gallons/250) * 19.94).toFixed(2);
+    var total = (+subtotal + +hazmatfee + +storagefee).toFixed(2);
+    var ccfee = (0.00).toFixed(2);
+    if (document.getElementById('paywithcc').checked) {
+      ccfee = 9.99;
+      total = (+total + +9.99).toFixed(2);
+    }
+    var expressdelivery = (0.00).toFixed(2);
+    if (document.getElementById('expressdelivery').checked) {
+      expressdelivery = 250.00;
+      total = (+total + +250.00).toFixed(2);
+    }
 
-    var output = `
-      <pre>
-      Gallons needed           -----   `+ needs +`
-      Price per gallon         -----   $ `+ ppg +`
-      Tax                      -----   `+ (+tax*100).toFixed(2) +` %
-      Tax amount               -----   $ `+ taxamount +`
-      Subtotal                 -----   $ `+ subtotal +`
-      Hazmat fee               -----   $ `+ hazmatfee +`
-      Storage fee (prebuy)     -----   $ `+ storagefee +`
-      Credit card fee          -----   $ 9.99
-      Pay by check total       ---------------   $ `+ checktotal +`
-      Pay by credit card total ---------------   $ `+ cctotal +`
-      </pre>
-      `;
-    $("#output").empty();
-    $("#output").append(output);
+    var prompt = `
+    <pre>
+    Order type: ==========Regular fill===========
+    Tank price               -----   $ 0.00
+    Gallons needed           -----   `+ gallons +`
+    Price per gallon         -----   $ `+ ppg +`
+    Tax                      -----   $ `+ (+tax*100).toFixed(2) +` %
+    Tax amount               -----   $ `+ taxamount +`
+    Subtotal                 -----   $ `+ subtotal +`
+    Hazmat fee               -----   $ `+ hazmatfee +`
+    Storage fee (prebuy)     -----   $ `+ storagefee +`
+    Credit card fee          -----   $ `+ ccfee +`
+    Express delivery fee     -----   $ `+ expressdelivery +`
+    TOTAL               ---------------   $ `+ total +`
+    </pre>`;
+    document.getElementById('calculatehere').innerHTML = prompt;
+    document.getElementById('totalamount').value = total;
   });
 
 });

@@ -1,5 +1,5 @@
 <div class="container mainform">
-  <form name="clientform" method="post" action="scripts/csr/savevalues.php">
+  <form name="clientform" method="post" action="scripts/csr/savevalues.php" onsubmit="return checkValues();">
     <div class="panel panel-primary">
       
       <div class="panel-heading panel-client">
@@ -111,10 +111,20 @@
       <div class="panel-body form-horizontal" id="newfill">
         <div class="row">
           <div class="col-md-4">
-            Existing orders (unfulfilled):<br/>
+            Existing orders (unfulfilled):
+          </div>
+          <div class="col-md-4">
+            {@orders}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
             Available pre-buy gallons:
           </div>
         </div>
+
+        <hr class='single'/>
+
         <div class="row">
           <div class="col-md-2">
             <input type="checkbox" id="newtankorder" name="newtankorder"></input>
@@ -157,13 +167,9 @@
         <div class="row">
           <div class="col-md-2">
             <input type="checkbox" id="newfillorder" name="newfillorder"></input>
-            <label for="newfillorder">New fill order</label><br/>
-            <input type="checkbox" id="newprebuyorder" name="newprebuyorder"></input>
-            <label for="newprebuyorder">New pre-buy order</label>
+            <label for="newfillorder">Regular fill order</label><br/>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 col-md-offset-2">
+          <div class="col-md-4">
             <label for="percentremaining">Percent remaining</label><br>
             <input type="text" id="percentremaining" name="percentremaining" maxlength="2" onkeyup="getFillGallons();">
           </div>
@@ -173,7 +179,11 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4 col-md-offset-2">
+          <div class="col-md-2">
+            <input type="checkbox" id="newprebuyorder" name="newprebuyorder"></input>
+            <label for="newprebuyorder">New pre-buy order</label>
+          </div>
+          <div class="col-md-4">
             <label for="gallons" class="required">Gallons</label><br>
             <input type="text" id="gallons" name="gallons" maxlength="4">
           </div>
@@ -227,16 +237,18 @@
 
         <div class="row">
           <div class="col-md-6 col-md-offset-3">
-            Check the appropriate boxes to include in the calculation.
-            <button type="button" class="btn btn-primary" onclick="calculateOrder();">Calculate order</button>
+            Check the appropriate boxes to include in the calculation.<br/>
+            <div class="input-group">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-primary" onclick="calculateOrder();">Calculate price</button>
+              </span>
+              <input type="text" id="totalamount" name="totalamount" class="form-control" placeholder="Total" readonly>
+            </div>
           </div>
         </div>
         <div class="row">
           <br/>
-          <div class="col-md-4 col-md-offset-1">
-            <span id="total"></span>
-          </div>
-          <div class="col-md-6" id="calculatehere">
+          <div class="col-md-6 col-md-offset-3" id="calculatehere">
           </div>
         </div>
 
@@ -298,10 +310,10 @@
       <div class="panel-body form-horizontal">
         <div class="row">
           <div class="col-md-8">
-            Remarks<br/>
+            Notes<br/>
             <textarea rows="2" id="remarks" name="remarks"></textarea><br/>
             Previous notes:<br/>
-            <textarea rows="3" id="notes" name="notes" class="display" readonly>{@remarks}</textarea>
+            <em>{@previousnotes}</em>
           </div>
           <div class="col-md-4">
             <p align="right">
@@ -317,7 +329,6 @@
               <input type="hidden" id="userid" name="userid" value="{@userid}">
               <input type="hidden" id="user" name="user" value="{@user}">
               <input type="hidden" id="leadid" name="leadid" value="{@leadid}">
-              <input type="hidden" id="totalamount" name="totalamount">
               <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
             </p>
           </div>
