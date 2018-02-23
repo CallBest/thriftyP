@@ -26,6 +26,21 @@
     if ($row['problemcustomer']==1) {
       $row['problemcustomer'] = 'checked';
     }
+    if ($row['haspricecap']==1) {
+      $row['haspricecap'] = 'checked';
+    }
+    if ($row['haslockin']==1) {
+      $row['haslockin'] = 'checked';
+    }
+    if ($row['hasprebuyannualfee']==1) {
+      $row['hasprebuyannualfee'] = 'checked';
+    }
+    if ($row['onbudgetprogram']==1) {
+      $row['onbudgetprogram'] = 'checked';
+    }
+    if ($row['twelvemonthtankprogram']==1) {
+      $row['twelvemonthtankprogram'] = 'checked';
+    }
     $body->add_keys($row);
 
     // include last 5 remarks from history
@@ -51,7 +66,7 @@
     $orders = '';
     for ($i=0; $i < $db->rowcount(); $i++) {
       $row = $db->fetchrow($i);
-      $orders .= "<a href='orderdetails.php?orderid=".$row['orderid']."' target='_blank'>(".$row['orderdate'].") ".$row['ordertype']."</a><br/>";
+      $orders .= "<a href='scripts/csr/orderdetails.php?orderid=".$row['orderid']."' target='_blank'>(".$row['orderdate'].") ".$row['ordertype']."</a><br/>";
     }
     $body->add_key('orders',$orders);
 

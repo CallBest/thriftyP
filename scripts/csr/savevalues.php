@@ -45,7 +45,23 @@ $datafields = array (
   'cardnumber',
   'expirationdate',
   'cvv',
-  'permanentdeliveryinstructions'
+  'permanentdeliveryinstructions',
+  'haspricecap',
+  'haspricecapppg',
+  'haspricecapexp',
+  'haslockin',
+  'haslockinppg',
+  'haslockinexp',
+  'tiergalloncoverage',
+  'restrictedprebuygallons',
+  'taxexempt',
+  'hasprebuyannualfee',
+  'prebuyfeestartdate',
+  'serialnumber',
+  'tankannualmaintenancefee',
+  'maintenancefeestartdate',
+  'onbudgetprogram',
+  'twelvemonthtankprogram'
 );
 
 $setfields = "";
